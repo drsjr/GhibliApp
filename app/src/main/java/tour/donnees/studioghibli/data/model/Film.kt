@@ -1,17 +1,19 @@
 package tour.donnees.studioghibli.data.model
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Film(
-    @SerializedName("id") val id: Int,
-    @SerializedName("title") val title: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("director") val director: String,
-    @SerializedName("producer") val producer: String,
-    @SerializedName("release_data") val releaseData: String,
-    @SerializedName("rt_score") val rtScore: String,
-    @SerializedName("people") val people: String,
-    @SerializedName("species") val species: String,
-    @SerializedName("locations") val locations: String,
-    @SerializedName("url") val url: String
-)
+    @Expose @SerializedName ("id") val id: String,
+    @Expose @SerializedName("title") val title: String,
+    @Expose @SerializedName("description") val description: String
+    /*@Expose  @SerializedName("director") val director: String,
+    @Expose @SerializedName("producer") val producer: String,
+    @Expose  @SerializedName("release_data") val releaseData: String,
+    @Expose @SerializedName("rt_score") val rtScore: String,
+    @Expose @SerializedName("people") val people: String,
+    @Expose @SerializedName("species") val species: String,
+    @Expose @SerializedName("locations") val locations: String,
+    @Expose @SerializedName("url") val url: String*/
+): Serializable

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item.view.*
 import tour.donnees.studioghibli.R
-import tour.donnees.studioghibli.dataLayer.model.Film
+import tour.donnees.studioghibli.domain.model.Film
 
 class StudioAdapter: RecyclerView.Adapter<StudioViewHolder>() {
 

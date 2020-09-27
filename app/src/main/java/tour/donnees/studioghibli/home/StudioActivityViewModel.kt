@@ -1,23 +1,20 @@
 package tour.donnees.studioghibli.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import tour.donnees.studioghibli.dataLayer.model.Film
-import tour.donnees.data.repository.GhibliRepository
+import tour.donnees.studioghibli.base.BaseViewModel
+import tour.donnees.studioghibli.domain.model.Film
 
-class StudioActivityViewModel(private val repository: tour.donnees.data.repository.GhibliRepository): ViewModel() {
+class StudioActivityViewModel(private val repository: tour.donnees.data.repository.GhibliRepository): BaseViewModel() {
 
     val movies = MutableLiveData<List<Film>>()
 
     fun loadMovies() {
-        repository.getFilmAsync().subscribe({ allFilms ->
-
+        addDisposable(repository.getFilmAsync().subscribe({ allFilms ->
             val list = allFilms.map { Film(it.id, it.title, it.description) }
-
             movies.value = list
         }, {
             it.printStackTrace()
-        })
+        }))
     }
 
 }

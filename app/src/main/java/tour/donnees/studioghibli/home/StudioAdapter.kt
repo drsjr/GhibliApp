@@ -1,4 +1,4 @@
-package tour.donnees.studioghibli
+package tour.donnees.studioghibli.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item.view.*
-import tour.donnees.studioghibli.data.model.Film
+import tour.donnees.studioghibli.R
+import tour.donnees.studioghibli.dataLayer.model.Film
 
 class StudioAdapter: RecyclerView.Adapter<StudioViewHolder>() {
 

@@ -1,4 +1,4 @@
-package tour.donnees.studioghibli.data.model
+package tour.donnees.studioghibli.dataLayer.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

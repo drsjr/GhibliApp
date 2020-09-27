@@ -1,4 +1,4 @@
-package tour.donnees.studioghibli.data
+package tour.donnees.data.network
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

@@ -1,16 +1,16 @@
-package tour.donnees.studioghibli
+package tour.donnees.studioghibli.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import tour.donnees.studioghibli.data.RetrofitService
-import tour.donnees.studioghibli.repository.GhibliRepository
+import org.koin.android.viewmodel.ext.android.viewModel
+import tour.donnees.studioghibli.R
 
 class StudioActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { StudioActivityViewModel(GhibliRepository(RetrofitService())) }
+    private val viewModel: StudioActivityViewModel by viewModel()
     private val adapter by lazy { StudioAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {

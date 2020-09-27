@@ -10,8 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".StudioApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".StudioActivity">
+        <activity android:name=".home.StudioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

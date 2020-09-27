@@ -1,12 +1,11 @@
-package tour.donnees.studioghibli.repository
+package tour.donnees.data.repository
 
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import tour.donnees.studioghibli.data.RetrofitService
 import java.lang.reflect.ParameterizedType
 
-open class BaseRepository<E>(private val service: RetrofitService) {
+open class BaseRepository<E>(private val service: tour.donnees.data.network.RetrofitService) {
 
     private fun <E> getEndpoint(endpoint: Class<E>): E {
         return service[endpoint]

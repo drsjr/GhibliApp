@@ -3,15 +3,16 @@ package tour.donnees.data.repository
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import tour.donnees.data.network.RetrofitService
 import java.lang.reflect.ParameterizedType
 
-open class BaseRepository<E>(private val service: tour.donnees.data.network.RetrofitService) {
+open class BaseRepository<E>(private val service: RetrofitService) {
 
     private fun <E> getEndpoint(endpoint: Class<E>): E {
         return service[endpoint]
     }
 
-    protected fun get(): E {
+    protected fun getEndpoint(): E {
         return getEndpoint(endpointClass())
     }
 
@@ -19,10 +20,11 @@ open class BaseRepository<E>(private val service: tour.donnees.data.network.Retr
         return single.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun endpointClass(): Class<E> {
         val clazz: Class<out BaseRepository<*>> = javaClass
-        val type = (clazz.genericSuperclass as ParameterizedType).actualTypeArguments
-        return type[0] as Class<E>
+        val types = (clazz.genericSuperclass as ParameterizedType).actualTypeArguments
+        return types[0] as Class<E>
     }
 
 }

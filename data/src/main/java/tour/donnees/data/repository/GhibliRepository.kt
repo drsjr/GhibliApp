@@ -8,6 +8,6 @@ import tour.donnees.data.network.RetrofitService
 class GhibliRepository(service: RetrofitService): BaseRepository<GhibliService>(service) {
 
     fun getFilmAsync(): Single<List<FilmResponse>> {
-        return schedule(get().getAllFilms())
+        return schedule(getEndpoint().getAllFilms())
     }
 }

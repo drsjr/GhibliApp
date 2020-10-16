@@ -1,14 +1,20 @@
 package tour.donnees.studioghibli.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.unloadKoinModules
 import tour.donnees.studioghibli.R
+import tour.donnees.studioghibli.base.BaseActivity
+import tour.donnees.studioghibli.base.NetworkState
+import tour.donnees.studioghibli.di.studioModule
+import tour.donnees.studioghibli.extension.hide
+import tour.donnees.studioghibli.extension.show
 
-class StudioActivity : AppCompatActivity() {
+class StudioActivity : BaseActivity() {
 
     private val viewModel: StudioActivityViewModel by viewModel()
     private val adapter by lazy { StudioAdapter() }
@@ -16,9 +22,32 @@ class StudioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        observerNetworkState()
         loadObservers()
         loadRecyclerView()
-        viewModel.loadMovies()
+        callMovies()
+    }
+
+    override fun observerNetworkState() {
+        viewModel.networkState.observe(this, Observer { state ->
+            when(state) {
+                NetworkState.ERROR -> {
+                    progress.hide()
+                }
+
+                NetworkState.IDLE -> {
+                    progress.hide()
+                }
+
+                NetworkState.PROGRESS -> {
+                    progress.show()
+                }
+
+                NetworkState.SUCCESS -> {
+                    progress.hide()
+                }
+            }
+        })
     }
 
     private fun loadObservers() {
@@ -32,5 +61,13 @@ class StudioActivity : AppCompatActivity() {
             it.layoutManager = LinearLayoutManager(this@StudioActivity, LinearLayoutManager.VERTICAL, false)
             it.adapter = adapter
         }
+    }
+
+    private fun callMovies() {
+        viewModel.loadMovies()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
